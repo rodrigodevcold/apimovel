@@ -1,44 +1,18 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/rodrigodevcold/apimovel/handler"
+)
 
 func initializeRoutes(router *gin.Engine) {
 	vi := router.Group("/api/v1")
 	{
-		//show API status
-		vi.GET("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"GET message": "API is up and running!",
-			})
-		})
+		//CRUD - Create, Read, Update, Delete
+		vi.GET("/license-plate", handler.ShowLicensePlateHandler)
+		vi.POST("/license-plate", handler.CreateLicensePlateHandler)
+		vi.DELETE("/license-plate", handler.DeleteLicensePlateHandler)
+		vi.PUT("/license-plate", handler.UpdateLicensePlateHandler)
+		vi.GET("/license-plate", handler.ListLicensePlateHandler)
 	}
-	{
-		vi.POST("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"POST message": "API is up and running!",
-			})
-		})
-	}
-	{
-		vi.DELETE("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"DELETE message": "API is up and running!",
-			})
-		})
-	}
-	{
-		vi.PUT("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"PUT message": "API is up and running!",
-			})
-		})
-	}
-	{
-		vi.GET("/openings", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"GET message": "API is up and running!",
-			})
-		})
-	}
-
 }
